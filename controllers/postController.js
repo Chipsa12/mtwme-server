@@ -7,7 +7,7 @@ class PostController {
     async createPost(req, res) {
         try {
             const {desc} = req.body;
-            const file = req.files.file ? req.files.file : false;
+            const file = req.files?.file ?? false;
             const createdAt = new Date().toISOString();
             const user = await DB.query("SELECT * FROM users where id=$1", [req.user.id])
             if (!user.rows[0]) {
